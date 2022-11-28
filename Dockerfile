@@ -14,7 +14,7 @@ RUN apt update && apt install -y --no-install-recommends git wget aria2 curl bus
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 # For Extraction of archieved files
-#RUN chmod +x extract
+RUN chmod +x extract
 
 # Start bot
 CMD ["bash", "run.sh"]
