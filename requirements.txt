@@ -10,7 +10,7 @@ bs4==0.0.1
 # DDL
 pySmartDL
 requests
-
+pyromod
 # Database
 dnspython
 motor
