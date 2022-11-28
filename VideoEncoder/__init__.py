@@ -29,7 +29,7 @@ import logging
 
 from pyrogram import idle
 
-from .__main__ import BOT
+from VideoEncoder.__main__ import BOT
 
 from aiohttp import *
 
