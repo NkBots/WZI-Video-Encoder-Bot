@@ -19,7 +19,7 @@ from pyrogram import idle
 from aiohttp import *
 from web import *
 
-from . import app, log
+from . import app, log, port
 
 dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers = [
@@ -32,7 +32,7 @@ async def main():
     await app.setup()
     bind_address = "0.0.0.0"
 
-    await web.TCPSite(app, bind_address, Config.PORT).start()
+    await web.TCPSite(app, bind_address, port).start()
     await app.send_message(chat_id=log, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
     await idle()
     await app.stop()
