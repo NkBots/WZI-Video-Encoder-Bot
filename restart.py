@@ -25,7 +25,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 
 UPSTREAM_REPO = 'https://github.com/NkBots/WZI-Video-Encoder-Bot'
-UPSTREAM_BRANCH = 'beta'
+UPSTREAM_BRANCH = 'main'
 
 if UPSTREAM_REPO is not None:
     if ospath.exists('.git'):
