@@ -2,7 +2,7 @@ import dns.resolver
 from pyrogram import idle
 from aiohttp import web
 import os
-from web import web_server
+#from web import web_server
 from . import app, log
 
 from aiohttp import web
