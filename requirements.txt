@@ -22,6 +22,8 @@ cfscrape
 lk21
 lxml
 httpx
+ptyz
+nest_asyncio
 
 # Google Drive
 google-api-core
