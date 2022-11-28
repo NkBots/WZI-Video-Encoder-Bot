@@ -56,8 +56,9 @@ BOT = Client(
     bot_token=bot_token,
 
     plugins={'root': os.path.join(__package__, 'plugins')},
-    sleep_threshold=30)
+    sleep_threshold=30
 )
+
 
 Start_Time = time.time()
 
