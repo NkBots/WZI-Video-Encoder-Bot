@@ -36,7 +36,7 @@ async def main():
     bind_address = "0.0.0.0"
 
     await web.TCPSite(telly, bind_address, port).start()
-    await app.send_message(chat_id=log, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
+    await app.send_message(chat_id=-1001866434086, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
     await idle()
     await app.stop()
 
