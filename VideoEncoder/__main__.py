@@ -8,7 +8,8 @@ from . import app, log
 dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers = [
     '8.8.8.8']  # this is a google public dns
-port = "8080"
+
+port = os.environ.get("PORT", "8080")
 
 async def main():
     await app.start()
