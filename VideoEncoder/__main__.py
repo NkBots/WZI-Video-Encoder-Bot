@@ -19,7 +19,7 @@ from pyrogram import idle
 from aiohttp import *
 from web import *
 
-from VideoEncoder.__init__ import *
+from VideoEncoder.__init__ import api_id, api_hash, bot_token
 
 dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers = [
