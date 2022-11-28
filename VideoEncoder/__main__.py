@@ -31,11 +31,11 @@ dns.resolver.default_resolver.nameservers = [
 
 async def main():
     await app.start()
-app = web.AppRunner(await web_server())
+telly = web.AppRunner(await web_server())
     await app.setup()
 bind_address = "0.0.0.0"
 
-    await web.TCPSite(app, bind_address, Config.PORT).start()
+    await web.TCPSite(telly, bind_address, Config.PORT).start()
     await app.send_message(chat_id=log, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
     await idle()
     await app.stop()
