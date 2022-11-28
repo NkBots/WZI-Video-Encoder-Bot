@@ -16,7 +16,6 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # For Extraction of archieved files
 RUN chmod +x extract
 
-RUN python3 -m http.server $port
-
+RUN python -m aio_tiny_healthcheck $port
 # Start bot
 CMD ["bash", "start.sh"]
