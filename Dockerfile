@@ -17,4 +17,4 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN chmod +x extract
 
 # Start bot
-CMD ["bash", "run.sh"]
+CMD ["bash", "start.sh"]
