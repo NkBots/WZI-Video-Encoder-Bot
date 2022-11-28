@@ -26,15 +26,18 @@ dns.resolver.default_resolver.nameservers = [
     '8.8.8.8']  # this is a google public dns
 
 
+
+
+
 async def main():
     await app.start()
-    app = web.AppRunner(await web_server())
+app = web.AppRunner(await web_server())
     await app.setup()
-    bind_address = "0.0.0.0"
+bind_address = "0.0.0.0"
 
-    await web.TCPSite(app, bind_address, port).start()
+    await web.TCPSite(app, bind_address, Config.PORT).start()
     await app.send_message(chat_id=log, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
     await idle()
     await app.stop()
 
-    app.loop.run_until_complete(main())
+app.loop.run_until_complete(main())
