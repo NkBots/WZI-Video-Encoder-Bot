@@ -18,20 +18,6 @@ dns.resolver.default_resolver.nameservers = [
     '8.8.8.8']  # this is a google public dns
 
 port = os.environ.get("PORT", "8080")
-
-async def main():
-    await app.start()
-    tech = web.AppRunner(await web_server())
-    await tech.setup()
-    bind_address = "0.0.0.0"
-
-    await web.TCPSite(tech, bind_address, port).start()
-    await app.send_message(chat_id=log, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
-    await idle()
-    await app.stop()
-
-app.loop.run_until_complete(main())
-
 from aiohttp import web
 
 routes = web.RouteTableDef()
@@ -46,6 +32,23 @@ async def web_server():
     web_app = web.Application(client_max_size=30000000)
     web_app.add_routes(routes)
     return web_app
+
+async def main():
+    await app.start()
+    tech = web.AppRunner(await web_server())
+    await tech.setup()
+    bind_address = "0.0.0.0"
+
+    await web.TCPSite(tech, bind_address, port).start()
+    await app.send_message(chat_id=log, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
+    await idle()
+    await app.stop()
+
+app.loop.run_until_complete(main())
+
+
+
+
 
 
 def some_sync_check():
