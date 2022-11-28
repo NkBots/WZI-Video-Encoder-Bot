@@ -32,7 +32,7 @@ dns.resolver.default_resolver.nameservers = [
 async def main():
     await app.start()
     telly = web.AppRunner(await web_server())
-    await app.setup()
+    await telly.setup()
     bind_address = "0.0.0.0"
 
     await web.TCPSite(telly, bind_address, port).start()
