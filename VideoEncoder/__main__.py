@@ -27,17 +27,39 @@ dns.resolver.default_resolver.nameservers = [
 
 
 
+import logging
+import time
+import os
+import nest_asyncio
+from pyrogram import Client
+from pyromod import listen
+from pyromod import listen
+import os
+import pytz
+import datetime
+from uploader.database.database import Database
+from uploader.config import Config
+
+nest_asyncio.apply()
+
+logging.basicConfig(
+    level=logging.INFO,
+    handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+)
+logger = logging.getLogger(__name__)
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
-async def main():
-    await app.start()
-    telly = web.AppRunner(await web_server())
-    await telly.setup()
-    bind_address = "0.0.0.0"
+BOT = Client(
+    name=Config.SESSION_NAME,
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN,
+    plugins=dict(root="VideoEncoder"),
+)
 
-    await web.TCPSite(telly, bind_address, port).start()
-    await app.send_message(chat_id=-1001866434086, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
-    await idle()
-    await app.stop()
+Start_Time = time.time()
 
-app.loop.run_until_complete(main())
+
+
