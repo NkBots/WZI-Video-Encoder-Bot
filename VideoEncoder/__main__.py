@@ -5,6 +5,11 @@ import os
 from web import web_server
 from . import app, log
 
+
+from flask import Flask
+
+cck = Flask(__name__)
+
 dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers = [
     '8.8.8.8']  # this is a google public dns
@@ -23,3 +28,8 @@ async def main():
     await app.stop()
 
 app.loop.run_until_complete(main())
+
+
+@cck.route("/health")
+def health():
+    return
