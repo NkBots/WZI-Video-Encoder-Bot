@@ -20,6 +20,7 @@ from aiohttp import *
 from web import *
 
 from VideoEncoder.__init__ import api_id, api_hash, bot_token
+from VideoEncoder.__init__ import app as BOT
 
 dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers = [
