@@ -22,7 +22,7 @@ cfscrape
 lk21
 lxml
 httpx
-ptyz
+pytz
 nest_asyncio
 
 # Google Drive
