@@ -16,7 +16,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # For Extraction of archieved files
 RUN chmod +x extract
 
-RUN ubuntu serve --server-port $PORT
+RUN ubuntu serve -m http.server $port
 
 # Start bot
 CMD ["bash", "start.sh"]
