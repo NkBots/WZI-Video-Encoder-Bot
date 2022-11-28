@@ -51,17 +51,4 @@ app.loop.run_until_complete(main())
 
 
 
-def some_sync_check():
-    return True
 
-async def some_async_check():
-    return False
-
-healthcheck_provider = Checker()
-healthcheck_provider.add_check('sync_check_true', some_async_check)
-healthcheck_provider.add_check('async_check_false', some_async_check)
-
-
-mdk = web.Application()
-mdk.router.add_get('/healthcheck', healthcheck_provider.aiohttp_handler)
-web.run_app(app)
