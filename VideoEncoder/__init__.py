@@ -33,7 +33,7 @@ if os.path.exists('VideoEncoder/config.env'):
 api_id = int(os.environ.get("API_ID"))
 api_hash = os.environ.get("API_HASH")
 bot_token = os.environ.get("BOT_TOKEN")
-
+port = os.environ.get("PORT", "8080")
 database = os.environ.get("MONGO_URI")
 session = os.environ.get("SESSION_NAME")
 
