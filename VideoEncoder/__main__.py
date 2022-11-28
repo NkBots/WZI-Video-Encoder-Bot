@@ -52,14 +52,15 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
 BOT = Client(
-    name=Config.SESSION_NAME,
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN,
-    plugins=dict(root="VideoEncoder"),
+    name=session_name,
+    api_id=api_id,
+    api_hash=api_hash,
+    bot_token=bot_token,
+
+    plugins={'root': os.path.join(__package__, 'VideoEncoder')},
+    sleep_threshold=30)
 )
 
 Start_Time = time.time()
-
 
 
