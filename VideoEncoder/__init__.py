@@ -18,15 +18,29 @@ import logging
 import os
 import time
 from io import BytesIO, StringIO
-from logging.handlers import RotatingFileHandler
+
 
 from dotenv import load_dotenv
 from pyrogram import Client
 
-botStartTime = time.time()
 
-if os.path.exists('VideoEncoder/config.env'):
-    load_dotenv('VideoEncoder/config.env')
+import asyncio
+import logging
+
+from pyrogram import idle
+
+from .__main__ import BOT
+
+from aiohttp import *
+
+from web import *
+
+
+import os
+logger = logging.getLogger(__name__)
+
+loop = asyncio.get_event_loop()
+
 
 # Variables
 
@@ -96,29 +110,59 @@ if not os.path.isdir(download_dir):
 if not os.path.isdir(encode_dir):
     os.makedirs(encode_dir)
 
-# the logging things
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    datefmt="%d-%b-%y %H:%M:%S",
-    handlers=[
-        RotatingFileHandler(
-            'VideoEncoder/utils/extras/logs.txt',
-            backupCount=20
-        ),
-        logging.StreamHandler()
-    ]
-)
+botStartTime = time.time()
 
-logging.getLogger("pyrogram").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
-LOGGER = logging.getLogger(__name__)
+if os.path.exists('VideoEncoder/config.env'):
+    load_dotenv('VideoEncoder/config.env')
 
-# Client
-app = Client(
-    session,
-    bot_token=bot_token,
-    api_id=api_id,
-    api_hash=api_hash,
-    plugins={'root': os.path.join(__package__, 'plugins')},
-    sleep_threshold=30)
+
+async def booted(bot):
+    chats = SUDO_USERS
+
+    try:
+        #COUNT.append(1868056307)
+        # COUNT.append(1868056307)
+        # COUNT.append(1868056307)
+        # COUNT.append(1868056307)
+        # COUNT.append(1868056307)
+        logger.info(f"Added Counting")
+    except Exception as e:
+        logger.info(f"⚠️ Main Error: {e}")
+
+    for i in chats:
+        try:
+            await bot.send_message(i, "")
+        except Exception:
+            logger.info(f"⚠️ Not found id {i}")
+
+
+async def start_bots():
+    print("Processing.....")
+    '''   
+    try:
+        await BOT.start()
+        logger.info(f"Bot is Running....🏃‍♂️")
+    except Exception as e:
+        logger.info(f"⚠️ Bot Error: {e}")
+    '''
+    app = web.AppRunner(await web_server())
+    await app.setup()
+    bind_address = "0.0.0.0"
+
+    await web.TCPSite(app, bind_address, port).start()
+
+    await BOT.start()   
+
+    await booted(BOT)
+    await idle()
+
+
+if __name__ == "__main__":
+    try:
+        loop.run_until_complete(start_bots())
+    except KeyboardInterrupt:
+        logger.info(f"⚠️ Bots Stopped!! Problem in loop run")
+
+
+
+
