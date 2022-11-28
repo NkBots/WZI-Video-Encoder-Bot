@@ -19,7 +19,7 @@ from pyrogram import idle
 from aiohttp import *
 from web import *
 
-from . import app, log, port
+from . import *
 
 dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
 dns.resolver.default_resolver.nameservers = [
@@ -33,12 +33,10 @@ import os
 import nest_asyncio
 from pyrogram import Client
 from pyromod import listen
-from pyromod import listen
 import os
 import pytz
 import datetime
-from uploader.database.database import Database
-from uploader.config import Config
+
 
 nest_asyncio.apply()
 
@@ -52,12 +50,12 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 
 
 BOT = Client(
-    name=session_name,
+    name=session,
     api_id=api_id,
     api_hash=api_hash,
     bot_token=bot_token,
 
-    plugins={'root': os.path.join(__package__, 'VideoEncoder')},
+    plugins={'root': os.path.join(__package__, 'plugins')},
     sleep_threshold=30)
 )
 
