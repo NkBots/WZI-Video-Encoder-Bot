@@ -14,7 +14,7 @@ requests
 # Database
 dnspython
 motor
-
+aiohttp 
 # Others
 psutil
 js2py
