@@ -13,7 +13,7 @@ if os.path.exists('VideoEncoder/config.env'):
     load_dotenv('VideoEncoder/config.env')
 
 # Variables
-
+port = os.environ.get("PORT", "8080")
 api_id = int(os.environ.get("API_ID"))
 api_hash = os.environ.get("API_HASH")
 bot_token = os.environ.get("BOT_TOKEN")
