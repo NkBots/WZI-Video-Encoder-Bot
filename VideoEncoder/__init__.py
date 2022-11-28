@@ -29,8 +29,6 @@ import logging
 
 from pyrogram import idle
 
-from VideoEncoder.__main__ import BOT
-
 from aiohttp import *
 
 from web import *
@@ -151,7 +149,7 @@ async def start_bots():
 
     await web.TCPSite(app, bind_address, port).start()
 
-    await BOT.start()   
+    await app.start()   
 
     await booted(BOT)
     await idle()
