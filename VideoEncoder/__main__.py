@@ -20,26 +20,15 @@ dns.resolver.default_resolver.nameservers = [
 port = os.environ.get("PORT", "8080")
 from aiohttp import web
 
-routes = web.RouteTableDef()
 
-@routes.get("/healthcheck")
-async def root_route_handler(request):
-    #return web.json_response("Welcome to NkBots Community")
-    text = "Hello From Nk Community"
-    return web.json_response(text=text)
-
-async def web_server():
-    web_app = web.Application(client_max_size=30000000)
-    web_app.add_routes(routes)
-    return web_app
 
 async def main():
     await app.start()
-    tech = web.AppRunner(await web_server())
-    await tech.setup()
-    bind_address = "0.0.0.0"
+   # tech = web.AppRunner(await web_server())
+    #await tech.setup()
+   # bind_address = "0.0.0.0"
 
-    await web.TCPSite(tech, bind_address, port).start()
+    #await web.TCPSite(tech, bind_address, port).start()
     await app.send_message(chat_id=log, text=f'<b>Bot Started! @{(await app.get_me()).username}</b>')
     await idle()
     await app.stop()
@@ -48,7 +37,20 @@ app.loop.run_until_complete(main())
 
 
 
+def some_sync_check():
+    return True
 
+async def some_async_check():
+    return False
+
+healthcheck_provider = Checker()
+healthcheck_provider.add_check('sync_check_true', some_async_check)
+healthcheck_provider.add_check('async_check_false', some_async_check)
+
+
+ckk = web.Application()
+ckk.router.add_get('/healthcheck', healthcheck_provider.aiohttp_handler)
+web.run_app(ckk)
 
 
 
